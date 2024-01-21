@@ -8,14 +8,14 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Entity
-@Table(name = "tasks")
+@Table(name = "TB_TASKS")
 public class TaskModel implements Serializable{
 
     @Serial
     private final static long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String nameTask;
     private String description;
