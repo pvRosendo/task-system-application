@@ -59,7 +59,7 @@ public class TaskControllers {
     return ResponseEntity.status(HttpStatus.OK).body(services.updateTask(id, recordsDto));
   }
 
-  @DeleteMapping()
+  @DeleteMapping(value = "/{id}")
   public ResponseEntity<?> deleteTask(@PathVariable(value = "id") UUID id){
     services.deleteTask(id);
 
