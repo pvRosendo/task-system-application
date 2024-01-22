@@ -1,7 +1,6 @@
 package com.rosendo.toDoList.controllers;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +22,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-//TODO adicionar content negotiation
 
 @RestController
 @RequestMapping("/api/tasks")
@@ -34,7 +32,7 @@ public class TaskControllers {
 
   
   @GetMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Object> getTaskById(@PathVariable(value = "id") UUID id){
+  public ResponseEntity<Object> getTaskById(@PathVariable(value = "id") Long id){
     
     return ResponseEntity.status(HttpStatus.OK).body(services.getTaskById(id));
   
@@ -55,12 +53,12 @@ public class TaskControllers {
   }
 
   @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<TaskModel> updateTask(@PathVariable(value="id") UUID id, @RequestBody @Valid TaskRecordDto recordsDto){
+  public ResponseEntity<TaskModel> updateTask(@PathVariable(value="id") Long id, @RequestBody @Valid TaskRecordDto recordsDto){
     return ResponseEntity.status(HttpStatus.OK).body(services.updateTask(id, recordsDto));
   }
 
   @DeleteMapping(value = "/{id}")
-  public ResponseEntity<?> deleteTask(@PathVariable(value = "id") UUID id){
+  public ResponseEntity<?> deleteTask(@PathVariable(value = "id") Long id){
     services.deleteTask(id);
 
     return ResponseEntity.noContent().build();

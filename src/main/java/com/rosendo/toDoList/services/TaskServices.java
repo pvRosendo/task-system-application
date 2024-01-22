@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class TaskServices {
@@ -18,7 +17,7 @@ public class TaskServices {
     @Autowired
     TaskRepository repository;
 
-    public Optional<TaskModel> getTaskById(UUID id){
+    public Optional<TaskModel> getTaskById(Long id){
         return repository.findById(id);
     }
     
@@ -33,7 +32,7 @@ public class TaskServices {
         return repository.save(model);
     }
 
-    public TaskModel updateTask(UUID id, TaskRecordDto modelDto){
+    public TaskModel updateTask(Long id, TaskRecordDto modelDto){
 
         Optional<TaskModel> task = repository.findById(id);
 
@@ -46,7 +45,7 @@ public class TaskServices {
         return repository.save(model);
     }
     
-    public void deleteTask(UUID id){
+    public void deleteTask(Long id){
 
         Optional<TaskModel> task = repository.findById(id);
 

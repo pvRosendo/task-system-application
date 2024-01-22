@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.UUID;
 
 @Entity
 @Table(name = "TB_TASKS")
@@ -15,19 +14,19 @@ public class TaskModel implements Serializable{
     private final static long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nameTask;
     private String description;
     private Integer priority;
     private String status;
 
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
