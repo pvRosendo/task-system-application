@@ -2,6 +2,7 @@ package com.rosendo.toDoList.services;
 
 import com.rosendo.toDoList.controllers.TaskControllers;
 import com.rosendo.toDoList.dtos.TaskRecordDto;
+import com.rosendo.toDoList.exceptions.ResourceNotFoundException;
 import com.rosendo.toDoList.models.TaskModel;
 import com.rosendo.toDoList.repositories.TaskRepository;
 
@@ -13,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TaskServices {
@@ -21,12 +21,13 @@ public class TaskServices {
     @Autowired
     TaskRepository repository;
 
-    public Optional<TaskModel> getTaskById(Long id){
-        Optional<TaskModel> taskModel = repository.findById(id);
+    public TaskModel getTaskById(Long id){
+        TaskModel task = repository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Not found task!"));
 
-        taskModel.get().add(linkTo(methodOn(TaskControllers.class).getAllTasks()).withRel("List of tasks"));
+        task.add(linkTo(methodOn(TaskControllers.class).getAllTasks()).withRel("List of tasks"));
 
-        return taskModel;
+        return task;
     }
     
     public List<TaskModel> getAllTasks(){
@@ -47,26 +48,22 @@ public class TaskServices {
 
     public TaskModel updateTask(Long id, TaskRecordDto modelDto){
 
-        Optional<TaskModel> task = repository.findById(id);
-
-        if(task.isEmpty()){} //TODO adicionar a exceção
+        TaskModel task = repository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Not found task!"));
         
-        var model = task.get();
-        
-        BeanUtils.copyProperties(modelDto, model);
+        BeanUtils.copyProperties(modelDto, task);
 
-        model.add(linkTo(methodOn(TaskControllers.class).getTaskById(model.getKey())).withSelfRel());
+        task.add(linkTo(methodOn(TaskControllers.class).getTaskById(task.getKey())).withSelfRel());
 
-        return repository.save(model);
+        return repository.save(task);
     }
     
     public void deleteTask(Long id){
 
-        Optional<TaskModel> task = repository.findById(id);
+        TaskModel task = repository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Not found task!"));
 
-        if(task.isEmpty()){} //TODO adicionar a exceção
-
-        repository.delete(task.get());
+        repository.delete(task);
     }
 
 }
