@@ -2,6 +2,11 @@ package com.rosendo.toDoList.controllers;
 
 import java.util.List;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -32,20 +37,51 @@ public class TaskControllers {
 
   
   @GetMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+  @Operation(summary = "Finds task by id", description = "Finds task by id",
+          tags = {"Tasks"},
+          responses = {
+                  @ApiResponse(description = "Success", responseCode = "200", content = {@Content(mediaType = "application/json")}),
+                  @ApiResponse(description="Bad Request", responseCode="400", content=@Content),
+                  @ApiResponse(description="Unauthorized", responseCode="401", content=@Content),
+                  @ApiResponse(description="Not Found", responseCode="404", content=@Content),
+                  @ApiResponse(description="Internal Error", responseCode="500", content=@Content),
+          }
+  )
   public ResponseEntity<Object> getTaskById(@PathVariable(value = "id") Long id){
-    
     return ResponseEntity.status(HttpStatus.OK).body(services.getTaskById(id));
-  
   }
   
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+  @Operation(summary = "Finds all Tasks", description = "Finds all Tasks",
+          tags = {"Tasks"},
+          responses = {
+                  @ApiResponse(description = "Success", responseCode = "200",
+                          content = {
+                                  @Content(
+                                          mediaType = "application/json",
+                                          array = @ArraySchema(schema = @Schema(implementation = TaskRecordDto.class)))
+                          }),
+                  @ApiResponse(description="Bad Request", responseCode="400", content=@Content),
+                  @ApiResponse(description="Unauthorized", responseCode="401", content=@Content),
+                  @ApiResponse(description="Not Found", responseCode="404", content=@Content),
+                  @ApiResponse(description="Internal Error", responseCode="500", content=@Content),
+          }
+  )
   public ResponseEntity<List<TaskModel>> getAllTasks(){
-    
     return ResponseEntity.status(HttpStatus.OK).body(services.getAllTasks());
-  
   }
   
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+  @Operation(summary = "Create a new task", description = "Create a new task",
+          tags = {"Tasks"},
+          responses = {
+                  @ApiResponse(description = "Success", responseCode = "200", content = {@Content(mediaType = "application/json")}),
+                  @ApiResponse(description="Bad Request", responseCode="400", content=@Content),
+                  @ApiResponse(description="Unauthorized", responseCode="401", content=@Content),
+                  @ApiResponse(description="Not Found", responseCode="404", content=@Content),
+                  @ApiResponse(description="Internal Error", responseCode="500", content=@Content),
+          }
+  )
   public ResponseEntity<TaskModel> createTask(@RequestBody @Valid TaskRecordDto recordsDto){
 
     return ResponseEntity.status(HttpStatus.CREATED).body(services.createTask(recordsDto));
@@ -53,15 +89,34 @@ public class TaskControllers {
   }
 
   @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+  @Operation(summary = "Update a new task", description = "Update a new task",
+          tags = {"Tasks"},
+          responses = {
+                  @ApiResponse(description = "Success", responseCode = "200", content = {@Content(mediaType = "application/json")}),
+                  @ApiResponse(description="Bad Request", responseCode="400", content=@Content),
+                  @ApiResponse(description="Unauthorized", responseCode="401", content=@Content),
+                  @ApiResponse(description="Not Found", responseCode="404", content=@Content),
+                  @ApiResponse(description="Internal Error", responseCode="500", content=@Content),
+          }
+  )
   public ResponseEntity<TaskModel> updateTask(@PathVariable(value="id") Long id, @RequestBody @Valid TaskRecordDto recordsDto){
     return ResponseEntity.status(HttpStatus.OK).body(services.updateTask(id, recordsDto));
   }
 
   @DeleteMapping(value = "/{id}")
+  @Operation(summary = "Deletes a task",
+          description = "Deletes a task!",
+          tags = {"Tasks"},
+          responses = {
+                  @ApiResponse(description = "No Content", responseCode = "204", content = @Content),
+                  @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
+                  @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
+                  @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
+                  @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content),
+          }
+  )
   public ResponseEntity<?> deleteTask(@PathVariable(value = "id") Long id){
     services.deleteTask(id);
-
     return ResponseEntity.noContent().build();
   }
-
 }

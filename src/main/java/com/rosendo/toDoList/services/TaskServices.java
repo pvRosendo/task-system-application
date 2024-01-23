@@ -42,7 +42,7 @@ public class TaskServices {
         var model = new TaskModel();
         BeanUtils.copyProperties(modelDto, model);
 
-        model.add(linkTo(methodOn(TaskControllers.class).getTaskById(model.getKey())).withSelfRel());
+        model.add(linkTo(methodOn(TaskControllers.class).getTaskById(model.getId())).withSelfRel());
         return repository.save(model);
     }
 
@@ -53,7 +53,7 @@ public class TaskServices {
         
         BeanUtils.copyProperties(modelDto, task);
 
-        task.add(linkTo(methodOn(TaskControllers.class).getTaskById(task.getKey())).withSelfRel());
+        task.add(linkTo(methodOn(TaskControllers.class).getTaskById(task.getId())).withSelfRel());
 
         return repository.save(task);
     }

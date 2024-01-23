@@ -17,8 +17,6 @@ public class TaskModel extends RepresentationModel<TaskModel> implements Seriali
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private Long key;
     private String nameTask;
     private String description;
     private Integer priority;
@@ -65,14 +63,6 @@ public class TaskModel extends RepresentationModel<TaskModel> implements Seriali
         this.status = status;
     }
 
-    public Long getKey() {
-        return key;
-    }
-
-    public void setKey(Long key) {
-        this.key = key;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -82,7 +72,6 @@ public class TaskModel extends RepresentationModel<TaskModel> implements Seriali
         TaskModel taskModel = (TaskModel) o;
 
         if (!Objects.equals(id, taskModel.id)) return false;
-        if (!Objects.equals(key, taskModel.key)) return false;
         if (!Objects.equals(nameTask, taskModel.nameTask)) return false;
         if (!Objects.equals(description, taskModel.description))
             return false;
@@ -94,12 +83,10 @@ public class TaskModel extends RepresentationModel<TaskModel> implements Seriali
     public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + (id != null ? id.hashCode() : 0);
-        result = 31 * result + (key != null ? key.hashCode() : 0);
         result = 31 * result + (nameTask != null ? nameTask.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (priority != null ? priority.hashCode() : 0);
         result = 31 * result + (status != null ? status.hashCode() : 0);
         return result;
     }
-
 }
