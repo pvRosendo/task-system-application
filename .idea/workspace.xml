@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fdcdabc8-8510-47a6-b2b1-5db2ba9e2cc0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra/image/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/infra/image/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

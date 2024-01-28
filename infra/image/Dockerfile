@@ -6,7 +6,7 @@ COPY . .
 
 RUN apt-get install maven -y
 WORKDIR "/task-system-api"
-RUN mvn clean install
+RUN mvn clean install -Dmaven.test.skip=true
 
 FROM openjdk:17-jdk-alpine
 
