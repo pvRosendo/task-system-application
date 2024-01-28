@@ -13,7 +13,7 @@ COPY pom.xml .
 RUN mvn -B dependency:resolve dependency:resolve-plugins
 
 # Copy the source code and build the application
-COPY src ./src
+COPY src ./task-system-api/src
 RUN mvn package
 
 # Create the final image using a lightweight base image
