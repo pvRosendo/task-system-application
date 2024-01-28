@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fdcdabc8-8510-47a6-b2b1-5db2ba9e2cc0" name="Changes" comment="" />
+    <list default="true" id="fdcdabc8-8510-47a6-b2b1-5db2ba9e2cc0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task-system-api/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task-system-api/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/task-system-api/src/main/resources/application.yml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,13 +62,14 @@
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_directory_selection": "E:/Vídeos/curso_backend/desafios/task-system-application/src/main/java/com/rosendo/toDoList",
-    "settings.editor.selected.configurable": "advanced.settings"
+    "last_opened_file_path": "E:/Vídeos/curso_backend/desafios/task-system-application",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.runner"
   }
 }]]></component>
   <component name="RunManager">
     <configuration name="ToDoListApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.rosendo.toDoList.ToDoListApplication" />
-      <module name="toDoList" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/task-system-api" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.rosendo.toDoList.*" />
