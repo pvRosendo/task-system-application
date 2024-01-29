@@ -1,21 +1,21 @@
-#version: '3.8'
-#services:
-##  db:
-#  task-system-api:
-#    image: pvrosendo/task-system-api
-#    restart: always
-#    build: /../task-system-api
-#    working_dir: /task-system-api
-#    environment:
-#      TZ: America/Sao_Paulo
-#    ports:
-#      - 80:80
-#    command: mvn spring-boot:run
-##    depends_on:
-##      - db
-#    networks:
-#      - pvrosendo-network
-#networks:
-#  pvrosendo-network:
-#    driver: bridge
-#
+version: '3.8'
+services:
+#  db:
+ task-system-api:
+   image: pvrosendo/task-system-api
+   restart: always
+   build: /../task-system-api
+   working_dir: /task-system-api
+   environment:
+     TZ: America/Sao_Paulo
+   ports:
+     - 80:80
+   command: mvn spring-boot:run
+#    depends_on:
+#      - db
+   networks:
+     - pvrosendo-network
+networks:
+ pvrosendo-network:
+   driver: bridge
+
