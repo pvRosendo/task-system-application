@@ -36,7 +36,7 @@ public class TaskControllers {
   TaskServices services;
 
   
-  @GetMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+  @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
   @Operation(summary = "Finds task by id", description = "Finds task by id",
           tags = {"Tasks"},
           responses = {

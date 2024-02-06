@@ -4,7 +4,9 @@ services:
  task-system-api:
    image: pvrosendo/task-system-api
    restart: always
-   build: /../task-system-api
+   build:
+     context: /../../task-system-api
+     dockerfile: /../infra/image/Dockerfile
    working_dir: /task-system-api
    environment:
      TZ: America/Sao_Paulo
