@@ -42,7 +42,7 @@ public class TaskServices {
         var model = new TaskModel();
         BeanUtils.copyProperties(modelDto, model);
 
-        model.add(linkTo(methodOn(TaskControllers.class).getTaskById(model.getId())).withSelfRel());
+        model.add(linkTo(methodOn(TaskControllers.class).getTaskById(1L)).withSelfRel());
         return repository.save(model);
     }
 

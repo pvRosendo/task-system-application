@@ -22,6 +22,7 @@ public class TaskModel extends RepresentationModel<TaskModel> implements Seriali
     private Integer priority;
     private String status;
 
+    public TaskModel() {};
 
     public Long getId() {
         return id;
@@ -51,8 +52,14 @@ public class TaskModel extends RepresentationModel<TaskModel> implements Seriali
         return priority;
     }
 
-    public void setPriority(Integer priority) {
-        this.priority = priority;
+    public void setPriority(Integer priority) throws Exception{
+        try{
+            this.priority = priority;
+
+        }catch(Exception e){
+            throw new Exception("Only permissive add priority in interval of 1 to 5");
+        }
+
     }
 
     public String getStatus() {
