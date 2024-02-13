@@ -1,6 +1,8 @@
 package com.rosendo.toDoList.services;
 
 import com.rosendo.toDoList.dtos.TaskRecordDto;
+import com.rosendo.toDoList.exceptions.RequiredObjectIsNullException;
+import com.rosendo.toDoList.exceptions.ResourceNotFoundException;
 import com.rosendo.toDoList.mocks.MockTasks;
 import com.rosendo.toDoList.models.TaskModel;
 import com.rosendo.toDoList.repositories.TaskRepository;
@@ -13,16 +15,27 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.junit.jupiter.MockitoSettings;
+import org.mockito.quality.Strictness;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.Link;
+
+import static org.mockito.ArgumentMatchers.nullable;
+import static org.mockito.Mockito.doReturn;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(MockitoExtension.class)
+@MockitoSettings(strictness = Strictness.LENIENT)
 class TaskServicesTest {
 
     MockTasks input;
@@ -81,15 +94,59 @@ class TaskServicesTest {
     }
 
     @Test
-    void createTask() throws Exception {
+    void createTask() throws Exception{
+        TaskRecordDto taskRecordDto = input.mockTaskDto(1);
+        TaskModel task = input.mockTask(1);
+        TaskModel taskPersisted = new TaskModel();
 
+        taskPersisted.setId(1L);
+        taskPersisted.setNameTask(taskRecordDto.nameTask());
+        taskPersisted.setDescription(taskRecordDto.description());
+        taskPersisted.setPriority(taskRecordDto.priority());
+        taskPersisted.setStatus(taskRecordDto.status());
+
+        when(taskRepository.save(Mockito.any())).thenReturn(taskPersisted);
+
+        var result = taskServices.createTask(taskRecordDto);
+
+        assertNotNull(result);
+        assertNotNull(result.getLinks());
+
+        assertEquals("Name Test1", result.getNameTask());
+        assertEquals("Description Test1", result.getDescription());
+        assertTrue(result.getPriority() >= 1 && result.getPriority() <= 5);
+        assertEquals("Status Test1", result.getStatus());
+        assertEquals(1L, result.getId());
     }
 
     @Test
-    void updateTask() {
+    void updateTask() throws Exception {
+        TaskModel task = input.mockTask(1);
+
+        TaskRecordDto taskRecordDto = input.mockTaskDto(1);
+
+        TaskModel taskPersisted = new TaskModel();
+
+        taskPersisted.setId(1L);
+        taskPersisted.setNameTask(taskRecordDto.nameTask());
+        taskPersisted.setDescription(taskRecordDto.description());
+        taskPersisted.setPriority(taskRecordDto.priority());
+        taskPersisted.setStatus(taskRecordDto.status());
+
+        when(taskRepository.findById(1L)).thenReturn(Optional.of(task));
+        when(taskRepository.save(task)).thenReturn(taskPersisted);
+
+        var result = taskServices.updateTask(1L, taskRecordDto);
+
+        assertNotNull(result);
+        assertNotNull(result.getLinks());
+
+        assertEquals("Name Test1", result.getNameTask());
+        assertEquals("Description Test1", result.getDescription());
+        assertTrue(result.getPriority() >= 1 && result.getPriority() <= 5);
+        assertEquals("Status Test1", result.getStatus());
+        assertEquals(1L, result.getId());
     }
-
-
 
 
     @Test

@@ -75,9 +75,7 @@ public class TaskControllers {
           }
   )
   public ResponseEntity<TaskModel> createTask(@RequestBody @Valid TaskRecordDto recordsDto){
-
     return ResponseEntity.status(HttpStatus.CREATED).body(services.createTask(recordsDto));
-
   }
 
   @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

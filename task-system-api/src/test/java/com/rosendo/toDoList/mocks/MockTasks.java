@@ -32,11 +32,11 @@ public class MockTasks {
         TaskModel task = new TaskModel();
         Random rand = new Random();
 
+        task.setId(number.longValue());
         task.setNameTask("Name Test" + number);
         task.setDescription("Description Test" + number);
         task.setPriority(rand.nextInt(5)+1);
         task.setStatus("Status Test" + number);
-        task.setId(number.longValue());
 
         return task;
     }
@@ -45,7 +45,6 @@ public class MockTasks {
         Random rand = new Random();
 
         TaskRecordDto task = new TaskRecordDto(
-                1L,
                 "Name Test"+ number,
                 "Description Test" + number,
                 rand.nextInt(5)+1,
