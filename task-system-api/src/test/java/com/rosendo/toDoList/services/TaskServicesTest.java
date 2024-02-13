@@ -1,8 +1,6 @@
 package com.rosendo.toDoList.services;
 
 import com.rosendo.toDoList.dtos.TaskRecordDto;
-import com.rosendo.toDoList.exceptions.RequiredObjectIsNullException;
-import com.rosendo.toDoList.exceptions.ResourceNotFoundException;
 import com.rosendo.toDoList.mocks.MockTasks;
 import com.rosendo.toDoList.models.TaskModel;
 import com.rosendo.toDoList.repositories.TaskRepository;
@@ -17,20 +15,11 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.Link;
-
-import static org.mockito.ArgumentMatchers.nullable;
-import static org.mockito.Mockito.doReturn;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)

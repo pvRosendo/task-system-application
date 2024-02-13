@@ -44,13 +44,11 @@ public class MockTasks {
     public TaskRecordDto mockTaskDto(Integer number) throws Exception {
         Random rand = new Random();
 
-        TaskRecordDto task = new TaskRecordDto(
+        return new TaskRecordDto(
                 "Name Test"+ number,
                 "Description Test" + number,
                 rand.nextInt(5)+1,
                 "Status Test" + number
         );
-
-        return task;
     }
 }
