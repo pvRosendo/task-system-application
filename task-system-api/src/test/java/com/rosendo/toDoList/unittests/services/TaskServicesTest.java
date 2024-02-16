@@ -1,9 +1,10 @@
-package com.rosendo.toDoList.services;
+package com.rosendo.toDoList.unittests.services;
 
 import com.rosendo.toDoList.dtos.TaskRecordDto;
-import com.rosendo.toDoList.mocks.MockTasks;
+import com.rosendo.toDoList.unittests.mocks.MockTasks;
 import com.rosendo.toDoList.models.TaskModel;
 import com.rosendo.toDoList.repositories.TaskRepository;
+import com.rosendo.toDoList.services.TaskServices;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;

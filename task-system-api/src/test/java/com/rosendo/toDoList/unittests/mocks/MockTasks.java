@@ -1,4 +1,4 @@
-package com.rosendo.toDoList.mocks;
+package com.rosendo.toDoList.unittests.mocks;
 
 import com.rosendo.toDoList.dtos.TaskRecordDto;
 import com.rosendo.toDoList.models.TaskModel;

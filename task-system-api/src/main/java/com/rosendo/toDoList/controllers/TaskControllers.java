@@ -29,8 +29,7 @@ public class TaskControllers {
 
   
   @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-  @Operation(summary = "Finds task by id", description = "Finds task by id",
-          tags = {"Tasks"},
+  @Operation(summary = "Finds task by id", description = "Finds task by id", tags = {"Tasks"},
           responses = {
                   @ApiResponse(description = "Success", responseCode = "200", content = {@Content(mediaType = "application/json")}),
                   @ApiResponse(description="Bad Request", responseCode="400", content=@Content),
@@ -44,8 +43,7 @@ public class TaskControllers {
   }
   
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-  @Operation(summary = "Finds all Tasks", description = "Finds all Tasks",
-          tags = {"Tasks"},
+  @Operation(summary = "Finds all Tasks", description = "Finds all Tasks", tags = {"Tasks"},
           responses = {
                   @ApiResponse(description = "Success", responseCode = "200",
                           content = {
@@ -64,8 +62,7 @@ public class TaskControllers {
   }
   
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-  @Operation(summary = "Create a new task", description = "Create a new task",
-          tags = {"Tasks"},
+  @Operation(summary = "Create a new task", description = "Create a new task", tags = {"Tasks"},
           responses = {
                   @ApiResponse(description = "Success", responseCode = "200", content = {@Content(mediaType = "application/json")}),
                   @ApiResponse(description="Bad Request", responseCode="400", content=@Content),
@@ -79,8 +76,7 @@ public class TaskControllers {
   }
 
   @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-  @Operation(summary = "Update a new task", description = "Update a new task",
-          tags = {"Tasks"},
+  @Operation(summary = "Update a new task", description = "Update a new task", tags = {"Tasks"},
           responses = {
                   @ApiResponse(description = "Success", responseCode = "200", content = {@Content(mediaType = "application/json")}),
                   @ApiResponse(description="Bad Request", responseCode="400", content=@Content),
@@ -94,9 +90,7 @@ public class TaskControllers {
   }
 
   @DeleteMapping(value = "/{id}")
-  @Operation(summary = "Deletes a task",
-          description = "Deletes a task!",
-          tags = {"Tasks"},
+  @Operation(summary = "Deletes a task", description = "Deletes a task!", tags = {"Tasks"},
           responses = {
                   @ApiResponse(description = "No Content", responseCode = "204", content = @Content),
                   @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
