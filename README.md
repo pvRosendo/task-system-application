@@ -1,4 +1,5 @@
-# To-Do List
+# Task System Application
+
 ## Simplify Backend Challenge
 
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
@@ -13,7 +14,7 @@
 
 This project is an API built using **Java, Java Spring, and PostgreSQL**.
 
-The API was developed with the aim of applying the studies and demonstrating how to solve the [Simplify Backend Challenge](https://github.com/simplify-tec/desafio-junior-backend-simplify). 
+The API was developed with the aim of applying the studies and demonstrating how to solve the [Simplify Backend Challenge](https://github.com/simplify-tec/desafio-junior-backend-simplify), but after meeting the requirements it was continued in order to improve and apply the new studies that I am obtaining. 
 
 Going beyond, documentation was also carried out using **Swagger** and deployment testing with [Render](https://render.com) through the [Docker image](). 
 
