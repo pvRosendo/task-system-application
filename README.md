@@ -72,7 +72,7 @@ DELETE /api/tasks/{id} - Delete a task
 
 | route               | description                                          
 |----------------------|-----------------------------------------------------
-| <kbd>GET :8080/api/tasks</kbd>      | retrieves user info, see [response details](#get-detail)
+| <kbd>GET :8080/api/tasks</kbd>      | retrieves task info, see [response details](#get-detail)
 | <kbd>POST :8080/api/tasks</kbd>     |  insert task into the api, see [request details](#post-detail)
 | <kbd>PUT :8080/api/tasks/{id}</kbd>      |  update task into the api, see [request details](#put-detail)
 | <kbd>DELETE :8080/api/tasks/{id}</kbd>   | delete task, see [request details](#delete-detail)
@@ -85,7 +85,7 @@ DELETE /api/tasks/{id} - Delete a task
 { 
   "nameTask": "string",
   "description": "string",
-  "priority": 0,
+  "priority": integer,
   "status": "string"
 }
 ```
@@ -97,7 +97,7 @@ DELETE /api/tasks/{id} - Delete a task
 {
   "nameTask": "string",
   "description": "string",
-  "priority": 0,
+  "priority": integer,
   "status": "string"
 }
 ```
@@ -110,7 +110,7 @@ https://localhost:8080/api/tasks/{id}
 {
   "nameTask": "string",
   "description": "string",
-  "priority": 0,
+  "priority": integer,
   "status": "string"
 }
 ```
@@ -120,7 +120,7 @@ https://localhost:8080/api/tasks/{id}
 {
   "nameTask": "string2",
   "description": "string2",
-  "priority": 1,
+  "priority": integer,
   "status": "string2"
 }
 ```
