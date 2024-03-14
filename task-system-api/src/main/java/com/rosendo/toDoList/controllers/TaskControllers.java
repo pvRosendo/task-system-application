@@ -2,6 +2,7 @@ package com.rosendo.toDoList.controllers;
 
 import java.util.List;
 
+import com.rosendo.toDoList.domain.tasks.dtos.GetTaskRecordDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -57,8 +58,8 @@ public class TaskControllers {
                   @ApiResponse(description="Internal Error", responseCode="500", content=@Content),
           }
   )
-  public ResponseEntity<List<TaskModel>> getAllTasks(){
-    return ResponseEntity.status(HttpStatus.OK).body(services.getAllTasks());
+  public ResponseEntity<List<TaskRecordDto>> getAllTasks(@RequestBody @Valid GetTaskRecordDto recordsDto){
+    return ResponseEntity.status(HttpStatus.OK).body(services.getAllTasks(recordsDto));
   }
   
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -71,7 +72,7 @@ public class TaskControllers {
                   @ApiResponse(description="Internal Error", responseCode="500", content=@Content),
           }
   )
-  public ResponseEntity<TaskModel> createTask(@RequestBody @Valid TaskRecordDto recordsDto){
+  public ResponseEntity<TaskRecordDto> createTask(@RequestBody @Valid TaskRecordDto recordsDto){
     return ResponseEntity.status(HttpStatus.CREATED).body(services.createTask(recordsDto));
   }
 
