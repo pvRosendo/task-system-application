@@ -1,5 +1,6 @@
 package com.rosendo.toDoList.domain.tasks.models;
 
+import com.rosendo.toDoList.domain.tasks.enums.ColumnsNames;
 import jakarta.persistence.*;
 import org.springframework.hateoas.RepresentationModel;
 
@@ -20,7 +21,7 @@ public class TaskModelToDo extends RepresentationModel<TaskModelToDo> implements
     private String nameTask;
     private String description;
     private Integer priority;
-    private String status;
+    private ColumnsNames status;
 
     public TaskModelToDo() {};
 
@@ -62,11 +63,11 @@ public class TaskModelToDo extends RepresentationModel<TaskModelToDo> implements
 
     }
 
-    public String getStatus() {
+    public ColumnsNames getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(ColumnsNames status) {
         this.status = status;
     }
 

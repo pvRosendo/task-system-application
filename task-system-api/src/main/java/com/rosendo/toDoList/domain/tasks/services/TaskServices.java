@@ -58,7 +58,7 @@ public class TaskServices {
                     .withRel("List of tasks"));
         }
         else if (taskRepositoryInbox.existsById(id)){
-            TaskModelDone task = taskRepositoryDone.findById(id)
+            TaskModelInbox task = taskRepositoryInbox.findById(id)
                     .orElseThrow(()-> new ResourceNotFoundException("Not found!"));
 
             BeanUtils.copyProperties(task, modelDto);
@@ -176,21 +176,124 @@ public class TaskServices {
         return modelDto;
     }
 
-    public TaskModel updateTask(Long id, TaskRecordDto modelDto){
+    public TaskRecordDto updateTask(Long id, TaskRecordDto modelDto){
 
-        TaskModel task = repository.findById(id)
-                .orElseThrow(()-> new ResourceNotFoundException("Not found task!"));
-        BeanUtils.copyProperties(modelDto, task);
-        task.add(linkTo(methodOn(TaskControllers.class).getTaskById(task.getId())).withSelfRel());
+        if(taskRepositoryBacklog.existsById(id)){
+            TaskModelBacklog task = taskRepositoryBacklog.findById(id)
+                    .orElseThrow(()-> new ResourceNotFoundException("Not found task!"));
 
-        return repository.save(task);
+            moveTask(task.getStatus(), modelDto.nameColumn(), modelDto);
+
+            BeanUtils.copyProperties(modelDto, task);
+            task.add(linkTo(methodOn(TaskControllers.class).getTaskById(task.getId())).withSelfRel());
+
+            taskRepositoryBacklog.save(task);
+        }
+        else if (taskRepositoryInbox.existsById(id)){
+            TaskModelInbox task = taskRepositoryInbox.findById(id)
+                    .orElseThrow(()-> new ResourceNotFoundException("Not found task!"));
+
+            moveTask(task.getStatus(), modelDto.nameColumn(), modelDto);
+
+            BeanUtils.copyProperties(modelDto, task);
+
+            task.add(linkTo(methodOn(TaskControllers.class).getTaskById(task.getId())).withSelfRel());
+            taskRepositoryInbox.save(task);
+        }
+        else if (taskRepositoryToDo.existsById(id)){
+            TaskModelToDo task = taskRepositoryToDo.findById(id)
+                    .orElseThrow(()-> new ResourceNotFoundException("Not found task!"));
+
+            moveTask(task.getStatus(), modelDto.nameColumn(), modelDto);
+
+            BeanUtils.copyProperties(modelDto, task);
+
+            task.add(linkTo(methodOn(TaskControllers.class).getTaskById(task.getId())).withSelfRel());
+            taskRepositoryToDo.save(task);
+        }
+        else if (taskRepositoryDoing.existsById(id)){
+            TaskModelDoing task = taskRepositoryDoing.findById(id)
+                    .orElseThrow(()-> new ResourceNotFoundException("Not found task!"));
+
+            moveTask(task.getStatus(), modelDto.nameColumn(), modelDto);
+
+            BeanUtils.copyProperties(modelDto, task);
+
+            task.add(linkTo(methodOn(TaskControllers.class).getTaskById(task.getId())).withSelfRel());
+            taskRepositoryDoing.save(task);
+        }
+        else if (taskRepositoryDone.existsById(id)){
+            TaskModelDone task = taskRepositoryDone.findById(id)
+                    .orElseThrow(()-> new ResourceNotFoundException("Not found task!"));
+
+            moveTask(task.getStatus(), modelDto.nameColumn(), modelDto);
+
+            BeanUtils.copyProperties(modelDto, task);
+
+            task.add(linkTo(methodOn(TaskControllers.class).getTaskById(task.getId())).withSelfRel());
+            taskRepositoryDone.save(task);
+        }
+
+        return modelDto;
     }
     
     public void deleteTask(Long id){
 
-        TaskModel task = repository.findById(id)
-                .orElseThrow(()-> new ResourceNotFoundException("Not found task!"));
-        repository.delete(task);
+        if (taskRepositoryBacklog.existsById(id)){
+            TaskModelBacklog task = taskRepositoryBacklog.findById(id)
+                    .orElseThrow(()-> new ResourceNotFoundException("Not found!"));
+            taskRepositoryBacklog.delete(task);
+        }
+        else if (taskRepositoryInbox.existsById(id)){
+            TaskModelInbox task = taskRepositoryInbox.findById(id)
+                    .orElseThrow(()-> new ResourceNotFoundException("Not found!"));
+            taskRepositoryInbox.delete(task);
+        }
+        else if (taskRepositoryToDo.existsById(id)){
+            TaskModelToDo task = taskRepositoryToDo.findById(id)
+                    .orElseThrow(()-> new ResourceNotFoundException("Not found!"));
+            taskRepositoryToDo.delete(task);
+        }
+        else if (taskRepositoryDoing.existsById(id)){
+            TaskModelDoing task = taskRepositoryDoing.findById(id)
+                    .orElseThrow(()-> new ResourceNotFoundException("Not found!"));
+            taskRepositoryDoing.delete(task);
+        }
+        else if (taskRepositoryDone.existsById(id)){
+            TaskModelDone task = taskRepositoryDone.findById(id)
+                    .orElseThrow(()-> new ResourceNotFoundException("Not found!"));
+            taskRepositoryDone.delete(task);
+        }
+    }
+
+    public void moveTask(ColumnsNames actuallyNameColumn, ColumnsNames futureNameColumn, TaskRecordDto modelDto){
+        if (actuallyNameColumn != futureNameColumn){
+            if (futureNameColumn == ColumnsNames.backlog){
+                TaskModelBacklog task = new TaskModelBacklog();
+                BeanUtils.copyProperties(modelDto, task);
+                taskRepositoryBacklog.save(task);
+            }
+            else if (futureNameColumn == ColumnsNames.inbox){
+                TaskModelInbox task = new TaskModelInbox();
+                BeanUtils.copyProperties(modelDto, task);
+                taskRepositoryInbox.save(task);
+            }
+            else if (futureNameColumn == ColumnsNames.toDo){
+                TaskModelToDo task = new TaskModelToDo();
+                BeanUtils.copyProperties(modelDto, task);
+                taskRepositoryToDo.save(task);
+            }
+            else if (futureNameColumn == ColumnsNames.doing){
+                TaskModelDoing task = new TaskModelDoing();
+                BeanUtils.copyProperties(modelDto, task);
+                taskRepositoryDoing.save(task);
+            }
+            else if (futureNameColumn == ColumnsNames.done){
+                TaskModelDone task = new TaskModelDone();
+                BeanUtils.copyProperties(modelDto, task);
+                taskRepositoryDone.save(task);
+            }
+        }
     }
 
 }
