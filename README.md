@@ -1,4 +1,5 @@
-# To-Do List
+# Task System Application
+
 ## Simplify Backend Challenge
 
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
@@ -13,7 +14,7 @@
 
 This project is an API built using **Java, Java Spring, and PostgreSQL**.
 
-The API was developed with the aim of applying the studies and demonstrating how to solve the [Simplify Backend Challenge](https://github.com/simplify-tec/desafio-junior-backend-simplify). 
+The API was developed with the aim of applying the studies and demonstrating how to solve the [Simplify Backend Challenge](https://github.com/simplify-tec/desafio-junior-backend-simplify), but after meeting the requirements it was continued in order to improve and apply the new studies that I am obtaining. 
 
 Going beyond, documentation was also carried out using **Swagger** and deployment testing with [Render](https://render.com) through the [Docker image](). 
 
@@ -71,7 +72,7 @@ DELETE /api/tasks/{id} - Delete a task
 
 | route               | description                                          
 |----------------------|-----------------------------------------------------
-| <kbd>GET :8080/api/tasks</kbd>      | retrieves user info, see [response details](#get-detail)
+| <kbd>GET :8080/api/tasks</kbd>      | retrieves task info, see [response details](#get-detail)
 | <kbd>POST :8080/api/tasks</kbd>     |  insert task into the api, see [request details](#post-detail)
 | <kbd>PUT :8080/api/tasks/{id}</kbd>      |  update task into the api, see [request details](#put-detail)
 | <kbd>DELETE :8080/api/tasks/{id}</kbd>   | delete task, see [request details](#delete-detail)
@@ -84,7 +85,7 @@ DELETE /api/tasks/{id} - Delete a task
 { 
   "nameTask": "string",
   "description": "string",
-  "priority": 0,
+  "priority": integer,
   "status": "string"
 }
 ```
@@ -96,7 +97,7 @@ DELETE /api/tasks/{id} - Delete a task
 {
   "nameTask": "string",
   "description": "string",
-  "priority": 0,
+  "priority": integer,
   "status": "string"
 }
 ```
@@ -109,7 +110,7 @@ https://localhost:8080/api/tasks/{id}
 {
   "nameTask": "string",
   "description": "string",
-  "priority": 0,
+  "priority": integer,
   "status": "string"
 }
 ```
@@ -119,7 +120,7 @@ https://localhost:8080/api/tasks/{id}
 {
   "nameTask": "string2",
   "description": "string2",
-  "priority": 1,
+  "priority": integer,
   "status": "string2"
 }
 ```
