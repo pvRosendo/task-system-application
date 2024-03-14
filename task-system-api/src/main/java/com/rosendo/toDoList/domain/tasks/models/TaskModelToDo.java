@@ -1,4 +1,4 @@
-package com.rosendo.toDoList.models;
+package com.rosendo.toDoList.domain.tasks.models;
 
 import jakarta.persistence.*;
 import org.springframework.hateoas.RepresentationModel;
@@ -8,8 +8,8 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "TB_TASKS")
-public class TaskModel extends RepresentationModel<TaskModel> implements Serializable{
+@Table(name = "TB_TODO")
+public class TaskModelToDo extends RepresentationModel<TaskModelToDo> implements Serializable{
 
     @Serial
     private final static long serialVersionUID = 1L;
@@ -22,7 +22,7 @@ public class TaskModel extends RepresentationModel<TaskModel> implements Seriali
     private Integer priority;
     private String status;
 
-    public TaskModel() {};
+    public TaskModelToDo() {};
 
     public Long getId() {
         return id;
@@ -76,14 +76,13 @@ public class TaskModel extends RepresentationModel<TaskModel> implements Seriali
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
 
-        TaskModel taskModel = (TaskModel) o;
+        TaskModelToDo that = (TaskModelToDo) o;
 
-        if (!Objects.equals(id, taskModel.id)) return false;
-        if (!Objects.equals(nameTask, taskModel.nameTask)) return false;
-        if (!Objects.equals(description, taskModel.description))
-            return false;
-        if (!Objects.equals(priority, taskModel.priority)) return false;
-        return Objects.equals(status, taskModel.status);
+        if (!Objects.equals(id, that.id)) return false;
+        if (!Objects.equals(nameTask, that.nameTask)) return false;
+        if (!Objects.equals(description, that.description)) return false;
+        if (!Objects.equals(priority, that.priority)) return false;
+        return Objects.equals(status, that.status);
     }
 
     @Override
