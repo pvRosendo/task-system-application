@@ -22,9 +22,6 @@ import java.util.List;
 public class TaskServices {
 
     @Autowired
-    TaskRepository repository;
-
-    @Autowired
     TaskRepositoryBacklog taskRepositoryBacklog;
 
     @Autowired

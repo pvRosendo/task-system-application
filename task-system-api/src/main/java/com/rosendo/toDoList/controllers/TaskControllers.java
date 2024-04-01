@@ -15,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.rosendo.toDoList.domain.tasks.dtos.TaskRecordDto;
-import com.rosendo.toDoList.domain.tasks.models.TaskModel;
 import com.rosendo.toDoList.domain.tasks.services.TaskServices;
 
 import jakarta.validation.Valid;
