@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class TaskServices {
@@ -36,7 +37,7 @@ public class TaskServices {
     @Autowired
     TaskRepositoryDone taskRepositoryDone;
 
-    public TaskRecordDto getTaskById(Long id) {
+    public TaskRecordDto getTaskById(UUID id) {
         TaskRecordDto modelDto = new TaskRecordDto(
             null,
             null,
@@ -173,7 +174,7 @@ public class TaskServices {
         return modelDto;
     }
 
-    public TaskRecordDto updateTask(Long id, TaskRecordDto modelDto){
+    public TaskRecordDto updateTask(UUID id, TaskRecordDto modelDto){
 
         if(taskRepositoryBacklog.existsById(id)){
             TaskModelBacklog task = taskRepositoryBacklog.findById(id)
@@ -234,7 +235,7 @@ public class TaskServices {
         return modelDto;
     }
     
-    public void deleteTask(Long id){
+    public void deleteTask(UUID id){
 
         if (taskRepositoryBacklog.existsById(id)){
             TaskModelBacklog task = taskRepositoryBacklog.findById(id)

@@ -1,6 +1,7 @@
 package com.rosendo.toDoList.controllers;
 
 import java.util.List;
+import java.util.UUID;
 
 import com.rosendo.toDoList.domain.tasks.dtos.GetTaskRecordDto;
 import io.swagger.v3.oas.annotations.Operation;
@@ -38,7 +39,7 @@ public class TaskControllers {
                   @ApiResponse(description="Internal Error", responseCode="500", content=@Content),
           }
   )
-  public ResponseEntity<Object> getTaskById(@PathVariable(value = "id") Long id){
+  public ResponseEntity<Object> getTaskById(@PathVariable(value = "id") UUID id){
     return ResponseEntity.status(HttpStatus.OK).body(services.getTaskById(id));
   }
   
@@ -85,7 +86,10 @@ public class TaskControllers {
                   @ApiResponse(description="Internal Error", responseCode="500", content=@Content),
           }
   )
-  public ResponseEntity<TaskRecordDto> updateTask(@PathVariable(value="id") Long id, @RequestBody @Valid TaskRecordDto recordsDto){
+  public ResponseEntity<TaskRecordDto> updateTask(
+          @PathVariable(value="id") UUID id,
+          @RequestBody @Valid TaskRecordDto recordsDto
+  ){
     return ResponseEntity.status(HttpStatus.OK).body(services.updateTask(id, recordsDto));
   }
 
@@ -99,7 +103,7 @@ public class TaskControllers {
                   @ApiResponse(description="Internal Error", responseCode = "500", content = @Content),
           }
   )
-  public ResponseEntity<?> deleteTask(@PathVariable(value = "id") Long id){
+  public ResponseEntity<?> deleteTask(@PathVariable(value = "id") UUID id){
     services.deleteTask(id);
     return ResponseEntity.noContent().build();
   }

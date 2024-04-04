@@ -4,5 +4,7 @@ import com.rosendo.toDoList.domain.tasks.models.TaskModelInbox;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.UUID;
+
 @Repository
-public interface TaskRepositoryInbox extends JpaRepository<TaskModelInbox, Long> {}
+public interface TaskRepositoryInbox extends JpaRepository<TaskModelInbox, UUID> {}

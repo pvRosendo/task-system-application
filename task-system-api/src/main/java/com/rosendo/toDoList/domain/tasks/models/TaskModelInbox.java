@@ -7,6 +7,7 @@ import org.springframework.hateoas.RepresentationModel;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 @Table(name = "TB_INBOX")
@@ -16,8 +17,8 @@ public class TaskModelInbox extends RepresentationModel<TaskModelInbox> implemen
     private final static long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
     private String nameTask;
     private String description;
     private Integer priority;
@@ -25,16 +26,18 @@ public class TaskModelInbox extends RepresentationModel<TaskModelInbox> implemen
 
     public TaskModelInbox() {};
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
+
     public String getNameTask() {
         return nameTask;
     }
+
     public void setNameTask(String nameTask) {
         this.nameTask = nameTask;
     }
@@ -51,14 +54,8 @@ public class TaskModelInbox extends RepresentationModel<TaskModelInbox> implemen
         return priority;
     }
 
-    public void setPriority(Integer priority) throws Exception{
-        try{
-            this.priority = priority;
-
-        }catch(Exception e){
-            throw new Exception("Only permissive add priority in interval of 1 to 5");
-        }
-
+    public void setPriority(Integer priority) {
+        this.priority = priority;
     }
 
     public ColumnsNames getStatus() {
@@ -81,7 +78,7 @@ public class TaskModelInbox extends RepresentationModel<TaskModelInbox> implemen
         if (!Objects.equals(nameTask, that.nameTask)) return false;
         if (!Objects.equals(description, that.description)) return false;
         if (!Objects.equals(priority, that.priority)) return false;
-        return Objects.equals(status, that.status);
+        return status == that.status;
     }
 
     @Override

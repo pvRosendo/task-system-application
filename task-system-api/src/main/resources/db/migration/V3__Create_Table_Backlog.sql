@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS public.tb_backlog (
-    id bigint NOT NULL,
+    id uuid NOT NULL,
     description character varying(255) NOT NULL,
     name_task character varying(255) NOT NULL,
     priority integer,
