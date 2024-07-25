@@ -12,131 +12,64 @@
 
 
 
-This project is an API built using **Java, Java Spring, and PostgreSQL**.
+Este projeto é uma API construída, principalmente, usando **Java, Java Spring e PostgreSQL**.
 
-The API was developed with the aim of applying the studies and demonstrating how to solve the [Simplify Backend Challenge](https://github.com/simplify-tec/desafio-junior-backend-simplify), but after meeting the requirements it was continued in order to improve and apply the new studies that I am obtaining. 
+A API foi desenvolvida com o objetivo de aplicar os estudos e demonstrar como resolver o [Simplify Backend Challenge](https://github.com/simplify-tec/desafio-junior-backend-simplify). Após atender a todos os requisitos fui melhorando e aplicando novas funcionalidades para aprimorar e visualizar os conhecimentos que obtive através dos estudos.
 
-Going beyond, documentation was also carried out using **Swagger** and deployment testing with [Render](https://render.com) through the [Docker image](). 
+Além disso, avançando ainda mais, também foi realizada documentação utilizando **Swagger** e teste de deploy no [Render](https://render.com) com Docker.
 
 ## Table of Contents
 
-- [Installation](#installation)
-- [Usage](#usage)
-- [API Endpoints](#api-endpoints)
-- [Contributing](#contributing)
+- [Instalação](#instalação)
+- [Uso](#uso)
+- [Endpoints da API](#endpoints-da-api)
 
-## Installation
+## Instalação
 
-1. Clone the repository:
+1. Clone o repositório:
 
 ```bash
 git clone https://github.com/pvRosendo/task-system-application.git
 ```
 
-2. Install dependencies and construct the project with Maven
+2. Instale as dependências e faça o build do projeto com Maven
 
 ```
 $ ./mvnw clean package
 ```
-3. Executar a aplicação:
-
-```
-$ java -jar /task-system-api/target/toDoList-0.0.1-SNAPSHOT.jar
-```
-
-4. Create a configuration with your runtime environment variables that are used in `application.properties`
+3. Crie uma configuração com as variáveis de ambiente de tempo de execução usadas no `application.properties`
 
 ```properties
 spring.datasource.url=${DATABASE_URL}
 spring.datasource.username=${DATABASE_USERNAME}
 spring.datasource.password=${DATABASE_PASSWORD}
 ```
+4. Execute a aplicação:
 
-## Usage
-
-1. Start the application with Maven
-2. The API will be accessible at http://localhost:8080
-3. The API documentation will be accessible at http://localhost:8080/swagger-ui.html
-
-## API Endpoints
-The API provides the following endpoints:
-
-**API PRODUCT**
-```markdown
-POST /api/tasks - Create a new task
-GET /api/tasks - Retrieve all tasks
-GET /api/tasks/{id} - Get a unique task
-PUT /api/tasks/{id} - Updates a task
-DELETE /api/tasks/{id} - Delete a task
+```
+$ java -jar /task-system-api/target/toDoList-0.0.1-SNAPSHOT.jar
 ```
 
-| route               | description                                          
+## Uso
+
+1. Start a aplicação com Maven;
+2. A API vai estar acessível no host pré-determinado;
+3. A documentação da API vai estar acessível adicionando "/swagger-ui.html" no path.
+
+## Endpoints da API
+A API possui os seguintes endpoints:
+
+| rota               | descrição                                          
 |----------------------|-----------------------------------------------------
-| <kbd>GET :8080/api/tasks</kbd>      | retrieves task info, see [response details](#get-detail)
-| <kbd>POST :8080/api/tasks</kbd>     |  insert task into the api, see [request details](#post-detail)
-| <kbd>PUT :8080/api/tasks/{id}</kbd>      |  update task into the api, see [request details](#put-detail)
-| <kbd>DELETE :8080/api/tasks/{id}</kbd>   | delete task, see [request details](#delete-detail)
+| <kbd>GET :8080/api/tasks</kbd>      |  Retorna todas as tasks (issue: sem paginação)
+| <kbd>GET :8080/api/tasks/{id}</kbd>      |  Retorna uma única task
+| <kbd>POST :8080/api/tasks</kbd>     |  Cria uma nova tarefa
+| <kbd>PUT :8080/api/tasks/{id}</kbd>      |   Atualiza uma tarefa
+| <kbd>DELETE :8080/api/tasks/{id}</kbd>   |  Deleta uma tarefa
 
 
-<h3 id="get-detail">GET</h3>
+## Deploy no Render
 
-**RESPONSE**
-```json
-{ 
-  "nameTask": "string",
-  "description": "string",
-  "priority": integer,
-  "status": "string"
-}
-```
-
-<h3 id="post-detail">POST</h3>
-
-**REQUEST**
-```json
-{
-  "nameTask": "string",
-  "description": "string",
-  "priority": integer,
-  "status": "string"
-}
-```
-
-<h3 id="put-detail">PUT</h3>
-
-**REQUEST**
-https://localhost:8080/api/tasks/{id}
-```json
-{
-  "nameTask": "string",
-  "description": "string",
-  "priority": integer,
-  "status": "string"
-}
-```
-
-**RESPONSE**
-```json
-{
-  "nameTask": "string2",
-  "description": "string2",
-  "priority": integer,
-  "status": "string2"
-}
-```
-
-<h3 id="delete-detail">DELETE</h3>
-
-**REQUEST**
-```
-https://localhost:8080/api/tasks/{id}
-```
-## Deploy on Render
-
-Both services were hosted on Render in order to test and train application deployments. A dockerization of the application was used and its image was used for the api.
+Ambos os serviços foram hospedados no Render para testar e treinar deploy de aplicativos. Foi utilizada uma dockerização da aplicação e sua imagem foi utilizada para a API.
 
 ![image](https://github.com/pvRosendo/task-system-application/assets/111819809/8fe17885-e338-4169-99ef-e4d6aaefd364)
-
-## Contributing
-
-If you find any issues or have suggestions for improvements, please open a suggestion.
