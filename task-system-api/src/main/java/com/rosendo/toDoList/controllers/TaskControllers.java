@@ -13,9 +13,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.rosendo.toDoList.dtos.TaskRecordDto;
-import com.rosendo.toDoList.models.TaskModel;
-import com.rosendo.toDoList.services.TaskServices;
+import com.rosendo.toDoList.domain.dtos.TaskRecordDto;
+import com.rosendo.toDoList.domain.models.TaskModel;
+import com.rosendo.toDoList.domain.services.TaskServices;
 
 import jakarta.validation.Valid;
 

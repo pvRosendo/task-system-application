@@ -1,7 +1,7 @@
 package com.rosendo.toDoList.unittests.mocks;
 
-import com.rosendo.toDoList.dtos.TaskRecordDto;
-import com.rosendo.toDoList.models.TaskModel;
+import com.rosendo.toDoList.domain.dtos.TaskRecordDto;
+import com.rosendo.toDoList.domain.models.TaskModel;
 
 import java.util.ArrayList;
 import java.util.List;

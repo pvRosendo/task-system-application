@@ -1,10 +1,10 @@
-package com.rosendo.toDoList.services;
+package com.rosendo.toDoList.domain.services;
 
 import com.rosendo.toDoList.controllers.TaskControllers;
-import com.rosendo.toDoList.dtos.TaskRecordDto;
+import com.rosendo.toDoList.domain.dtos.TaskRecordDto;
 import com.rosendo.toDoList.exceptions.ResourceNotFoundException;
-import com.rosendo.toDoList.models.TaskModel;
-import com.rosendo.toDoList.repositories.TaskRepository;
+import com.rosendo.toDoList.domain.models.TaskModel;
+import com.rosendo.toDoList.domain.repositories.TaskRepository;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;

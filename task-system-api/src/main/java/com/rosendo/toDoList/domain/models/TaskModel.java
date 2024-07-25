@@ -1,4 +1,4 @@
-package com.rosendo.toDoList.models;
+package com.rosendo.toDoList.domain.models;
 
 import jakarta.persistence.*;
 import org.springframework.hateoas.RepresentationModel;
